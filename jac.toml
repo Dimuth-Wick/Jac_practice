@@ -1,0 +1,34 @@
+[project]
+name = "jac-portfolio"
+version = "0.1.0"
+description = "A Jac-only resume and portfolio application"
+entry-point = "main.jac"
+kind = "fullstack"
+
+[dependencies.pypi]
+jac-client = "==0.3.25"
+jac-scale = "==0.2.31"
+
+[dependencies.npm]
+jac-client-node = "1.0.7"
+
+[dependencies.npm.dev]
+"@jac-client/dev-deps" = "1.0.0"
+
+[serve]
+base_route_app = "app"
+
+[plugins.scale.jwt]
+secret = "${JAC_JWT_SECRET:?Set JAC_JWT_SECRET before starting}"
+exp_delta_days = 1
+
+[plugins.scale.admin]
+username = "admin"
+default_password = "${JAC_ADMIN_PASSWORD:?Set JAC_ADMIN_PASSWORD before starting}"
+require_password_reset = false
+
+[plugins.scale.microservices]
+enabled = false
+
+[test]
+directories = ["tests"]
